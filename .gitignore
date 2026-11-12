@@ -1,0 +1,37 @@
+# Binaries and build artifacts
+bin/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test and coverage files
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# Environment and decrypted secret files (SOPS)
+.env
+.env.*
+!.env.example
+*.dec.yaml
+*.dec.yml
+
+# Age private keys
+*.agekey
+keys.txt
+age.key
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db

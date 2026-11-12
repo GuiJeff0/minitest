@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minitest-api-config
+  namespace: apps
+data:
+  HTTP_PORT: "8080"
+  DB_NAME: "minitest"
+  DB_USER: "minitest"
+  SHUTDOWN_TIMEOUT_SECONDS: "10"

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minitest-api
+  namespace: apps
+  labels:
+    app: minitest-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minitest-api
+  template:
+    metadata:
+      labels:
+        app: minitest-api
+    spec:
+      containers:
+        - name: minitest-api
+          image: minitest-api:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          envFrom:
+            - configMapRef:
+                name: global-config
+            - configMapRef:
+                name: minitest-api-config
+            - secretRef:
+                name: minitest-api-secret
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi

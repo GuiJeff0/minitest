@@ -1,0 +1,7 @@
+# SOPS encryption rules for Kubernetes Secrets (*.enc.yaml / *.enc.yml).
+# Replace the placeholder Age public key below with your own public key
+# generated via: age-keygen -o keys.txt
+creation_rules:
+  - path_regex: .*\.enc\.ya?ml$
+    encrypted_regex: ^(data|stringData)$
+    age: age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

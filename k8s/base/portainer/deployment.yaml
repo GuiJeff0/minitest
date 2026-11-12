@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portainer
+  namespace: portainer
+  labels:
+    app: portainer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portainer
+  template:
+    metadata:
+      labels:
+        app: portainer
+    spec:
+      serviceAccountName: portainer-sa-clusteradmin
+      containers:
+        - name: portainer
+          image: portainer/portainer-ce:2.21.5
+          args:
+            - --tlsskipverify
+          ports:
+            - containerPort: 9000
+              name: http
+            - containerPort: 9443
+              name: https
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: global-config
+  namespace: apps
+data:
+  APP_ENV: "base"
+  LOG_LEVEL: "info"
+  DB_HOST: "postgres-service.databases.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_SSLMODE: "disable"
