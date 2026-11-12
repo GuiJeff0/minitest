@@ -1,0 +1,7 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minitest-api
+  namespace: apps
+spec:
+  replicas: 2

@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+images:
+  - name: minitest-api
+    newTag: latest
+
+patches:
+  - path: patches/global-config.yaml
+  - path: patches/minitest-api-deployment.yaml
+  - target:
+      group: traefik.io
+      version: v1alpha1
+      kind: IngressRoute
+      name: minitest-api-ingressroute
+      namespace: apps
+    path: patches/minitest-api-ingressroute.yaml

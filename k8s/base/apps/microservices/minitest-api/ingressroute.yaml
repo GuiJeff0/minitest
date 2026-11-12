@@ -1,0 +1,14 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: minitest-api-ingressroute
+  namespace: apps
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`minitest.local`)
+      kind: Rule
+      services:
+        - name: minitest-api-service
+          port: 80
