@@ -1,0 +1,14 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: minitest
+nodes:
+  - role: control-plane
+    labels:
+      ingress-ready: "true"
+    extraPortMappings:
+      - containerPort: 30080   # NodePort HTTP do Traefik
+        hostPort: 80           # Caso queira manter o k3s ativo na porta 80, altere para 8080
+        protocol: TCP
+      - containerPort: 30443   # NodePort HTTPS do Traefik
+        hostPort: 443          # Caso queira manter o k3s ativo na porta 443, altere para 8443
+        protocol: TCP
