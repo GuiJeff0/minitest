@@ -5,3 +5,8 @@ metadata:
   namespace: apps
 spec:
   replicas: 2
+  template:
+    spec:
+      containers:
+        - name: minitest-api
+          imagePullPolicy: IfNotPresent
